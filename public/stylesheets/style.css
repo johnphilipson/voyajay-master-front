@@ -1,0 +1,185 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    background: #d3d3d3;
+    background: -webkit-linear-gradient(to left, #d3d3d3, #2a0845);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: montserrat, arial, verdana;
+    background: transparent;
+}
+
+.topnav-right {
+    float: right;
+  }
+
+.container-fulid{
+width: 100%;
+height: 100%;
+}
+
+.frontview{
+  position: absolute;
+   margin: auto;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height:30%;
+   text-align: center;
+
+ }
+ 
+
+.row{
+  width: 100%;
+  margin: auto;
+
+}
+
+
+
+
+.form-group{
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 15px 0 0 15px;
+    transition: all 200ms;
+    opacity: 0.5;
+  }
+  
+  .form-control:focus + .form-control-placeholder,
+  .form-control:valid + .form-control-placeholder {
+    font-size: 100%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+/*form styles*/
+#msform {
+   
+    position: relative;
+    margin-top: 30px;
+}
+
+.start-button {
+  width: 20%;
+  background: #00aced;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+
+.btn{
+    width: 120px;
+    background: #00aced;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#dobstatus{
+  color: red;
+}
+
+
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for vh unit */
+  min-height: 100vh; /* You might also want to use
+  /* Make it a flex container */ 
+  display: -moz-box;
+  display: -ms-flexbox;
+  /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+          width: 100%;
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
+}
+
+
+
+
+.privacy-txt{
+  width: 90%;
+  margin: auto;
+padding-top: 5%;}
+
+.privacy-policy{
+  min-height: 100%;  /* Fallback for vh unit */
+  min-height: 100%; /* You might also want to use
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+  /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+    -webkit-align-items : center;
+    -moz-box-align : center;
+    -ms-flex-align : center;
+          align-items : center;
+          width: 100%;
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
+
+}
+
+
+
+@media screen and (max-width: 900px) {
+.frontview {height:60%;}
+.frontview img{width:18%;}
+#msform input, #msform textarea {
+padding:6%;
+}
+
+}
+
+
+@media screen and (max-width: 450px) {
+.frontview {height:60%;}
+.frontview img{width:60%;}
+}
+
+
+
