@@ -1,0 +1,326 @@
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Voyajay</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/formstyle.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
+
+</head>
+<body style="overflow: hidden;">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/"><img src="images/Logoh.png" style="width:50%;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar" style="padding:12px">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/legal">Legal</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+      
+    <div class="container-fulid">
+            <div class="row">
+                <div class="frontview">
+                    <img src="images/logo1.png">
+                    <h3>The Customer Journey Experts</h3>
+                    <a href="#signup"><button type="button" class="btn start-b start-button">Start</button></a>
+                </div>
+            </div>
+    </div>
+
+    <!-- MultiStep Form -->
+<div id="signup" class="vertical-center">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form id="msform" method="POST" action="/register">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active" id="step1">Start</li>
+                    <li id="step2">More Details</li>
+                    <li id="step3">Start Earning</li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset class="fieldset1">
+                    <h2 class="fs-title"></h2>
+                    <h3 class="fs-subtitle">Register now and start earning!</h3>
+ 
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="fname" id="fname" required/>
+                    <label class="form-control-placeholder" for="firstname"> First Name </label>
+                    <div id="texterr"></div>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="lname" id="lname" required/>
+                    <label class="form-control-placeholder" for="lastname"> Last Name </label>
+                    <div id="texterr"></div>
+                    </div>
+
+                    <div class="form-group">
+                            <div class="status" id="emailval"></div>
+                            <input type="text" class="form-control" name="email" id="email" onchange="email_validate(this)" required/>
+                            <label class="form-control-placeholder" for="email"> Your email </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="dobstatus"></div>
+                        <input type="text" class="form-control datepicker" name="dob"  id="datepicker" onchange="_setAge(this);"  required/>
+                        <label class="form-control-placeholder" for="dob"> Date of Birth </label>
+                        </div>
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="address" id="address" required/>
+                    <label class="form-control-placeholder" for="address"> Your Address </label>
+                    </div>
+
+                    <input type="button" name="next" class="next action-button" value="Continue" onclick="ValidationEvent(this)"/>
+                
+                    <div id="filedsetfirsterr"> Please complete all required fields </div>
+
+                </fieldset>
+
+
+                <fieldset class="fieldset2">
+                    
+                    <h2 class="fs-title"></h2>
+                    <h3 class="fs-subtitle">Some more important questions</h3>
+
+                    <div id="secondform">
+                    <div class="form-group">
+                            <label>Do you own or rent your home?</label>                        
+                            <div class="inline-radio">
+                                <div class="radio-btn"><input type="radio" name="home" value="Rent"><label>Rent</label></div>
+                                <div class="radio-btn"><input type="radio" name="home" value="Owner"><label>Owner</label></div>
+                            </div>
+                    </div> 
+
+                    <div class="form-group">
+                            <label for="sel1">What is your relationship status?</label>
+                                <select class="form-control" id="sel1" name="relationship">
+                                    <option value="Single">Single</option>
+                                    <option value="In a Relationship">In a Relationship</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Married with Children">Married with Children</option>
+                                    <option value="It's Complicated">It's Complicated</option>
+                                </select>  
+                        </div>
+                    
+                    <div class="form-group">
+                        <label for="sel1">What is your occupation?</label>
+                            <select class="form-control" id="sel1" name="occupation">
+                                <option value="Studying">Studying</option>
+                                <option value="Self-employed,">Self-employed</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Full-time">Full-time</option>
+				                <option value="Unemployed">Unemployed</option>
+                            </select>  
+                    </div>
+
+                    <div class="form-group" style="margin-top:5%;">
+                        <label style="margin-bottom: 30px;">Which of the following options best describes your education?</label>                        
+                            <div class="cc-selector">
+                                <ul>
+                                 <li>   
+                                <input id="highschool" type="radio" name="education" value="highschool" />
+                                <label class="drinkcard-cc highschool" for="highschool"><span class="imgbtntxt" style="margin-left: -25px !important;">Highschool</span></label>
+                                 </li>
+                                 <li>
+                                <input id="tertiary" type="radio" name="education" value="tertiary" />
+                                <label class="drinkcard-cc tertiary"for="tertiary"><span class="imgbtntxt">Tertiary</span></label>
+                                 </li>
+                                 <li>
+                                <input id="tafe" type="radio" name="education" value="tafe" />
+                                <label class="drinkcard-cc tafe" for="tafe"><span class="imgbtntxt">Tafe</span></label>
+                                 </li>
+                                 <li> 
+                                <input id="none" type="radio" name="education" value="none" />
+                                <label class="drinkcard-cc none"for="none"><span class="imgbtntxt">None</span></label>
+                                 </li>
+                                </ul>                                           
+                            </div>
+                    </div>
+                    </div>
+                
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    <input type="button" name="next" class="next action-button" value="Next" onclick="validationsecondform(this)"/>
+
+                    <div id="filedsetsecerr"> Please complete all required fields </div>
+
+                </fieldset>
+
+                <fieldset class="fieldset3">
+                    <h2 class="fs-title"></h2>
+                    <h3 class="fs-subtitle">Create your account</h3>
+                    <div id="thirdform">
+			            <label style="width:100%; text-align:left; margin-bottom:20px;">What is your preferred contact method?</label>
+                            <div class="form-group">
+                                <div class="cc-selector" style="text-align: center;">
+                                    <input id="m-phone" type="radio" name="contact" value="m-phone"/>
+                                    <label class="drinkcard-cc m-phone" for="m-phone" style="margin-left: 30px;"></label>
+                                </div>
+                            </div>
+
+                        <div class="form-group" id="phone-css" style="display:none;">
+                            <div id="errphone"></div>
+                                <input type="text" class="form-control" name="phone" id="phone" maxlength="15" onkeyup="validatephone(this.value);"/>
+                                <label class="form-control-placeholder" for="phn"> Phone No. </label>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="sel1">How did you hear about us?</label>
+                                    <select class="form-control" id="sel1" name="aboutus">
+                                        <option value="Word of Mouth">Word of Mouth</option>
+                                        <option value="Social Media">Social Media</option>
+                                        <option value="Job site">Job site (ie SEEK, Indeed, Gumtree)</option>
+                                        <option value="mail">In the mail</option>
+                                        <option value="Other">Other</option>
+                                    </select>  
+                            </div>
+
+			  <a href="/privacy" style="float:left; color:black;">Privacy Policy</a><br>
+
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    <button class="btn" type="submit">Send</button>
+
+                    <div class="confirmation">Thanks for registering with us - we look forward to working with you!</div>
+                </fieldset>
+
+            </form>
+        
+        </div>
+    </div>
+</div> 
+
+    <!-- /.MultiStep Form <input type="submit" name="submit" class="submit action-button" id="submitbtn"  value="Start Earning!"/> -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="javascripts/formscript.js"></script>
+    <script src="javascripts/formvalidation.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
+
+    <script>
+
+    $(document).ready(function(){
+            var date_input=$('input[name="dob"]'); //our date input has the name "date"
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                todayHighlight: true,
+                autoclose: true,
+            })
+    })
+
+
+        $(function() {
+            $('input[name="contact"]').on('click', function() {
+                if ($(this).val() == 'email') {
+                    $('#phone-css').hide();
+                    $('#mail-css').show();
+                }
+            else if($(this).val() == 'm-phone')
+            {
+                $('#phone-css').show();
+                $('#mail-css').hide();  
+                }
+            });
+        });
+
+        var today = new Date()
+                //Calculates age from given Birth Date in the form//
+                function _calcAge(birthDate, givenDate) {
+                givenDate = new Date(today);
+                var dt1 = document.getElementById('datepicker').value;
+                var birthDate = new Date(dt1);
+                var years = (givenDate.getFullYear() - birthDate.getFullYear());
+
+                if (givenDate.getMonth() < birthDate.getMonth() ||
+                givenDate.getMonth() == birthDate.getMonth() && givenDate.getDate() < birthDate.getDate()) {
+                years--;
+                }
+
+                return years;
+        }
+
+            //Compares calculated age with minimum age and acts according to rules//
+                function _setAge() {
+                    var age = _calcAge();
+                    if (age < 16) {
+                        document.getElementById("dobstatus").innerHTML= "<span class='warning'>People under sixteen are ineligible for sign-up</span>";
+                        } 
+                    else
+                        document.getElementById("dobstatus").innerHTML	= "";	
+                    }
+
+                    $('#submitbtn').click(function(){
+                        $(".confirmation").show();
+
+
+                });
+      
+            // Below Function Executes On Form Submit
+            function ValidationEvent() {
+                // Storing Field Values In Variables
+                var fname = document.getElementById("fname").value;
+                var lname = document.getElementById("lname").value;
+                var datepicker = document.getElementById("datepicker").value;
+                var address = document.getElementById("address").value;
+                
+                if (fname != '' && lname != '' && datepicker != '' && address != '') { 
+                    animating = false;
+                }
+                 else {
+                        document.getElementById("filedsetfirsterr").style.display = "block";
+                    animating = true;
+                return false;
+                    }
+            }
+                
+            function validationsecondform(){
+    
+                var radios = document.getElementsByName("home");
+                var formValid = false;
+
+                var i = 0;
+                while (!formValid && i < radios.length) {
+                if (radios[i].checked) formValid = true;
+                i++;        
+                }
+
+             if (!formValid) {
+             document.getElementById("filedsetsecerr").style.display = "block";
+             animating = true;
+             }
+
+             else{
+                animating = false;
+             }
+            }
+
+
+    </script>
+
+</body>
+</html>
