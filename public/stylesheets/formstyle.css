@@ -112,9 +112,10 @@
 
 #progressbar li {
     list-style-type: none;
-    color: white;
+    color: black;
+    font-weight: bold;
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 12px;
     width: 33.33%;
     float: left;
     position: relative;

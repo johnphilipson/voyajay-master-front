@@ -1,7 +1,4 @@
 
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <!DOCTYPE html>
@@ -11,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Voyajay</title>
+    <link rel="shortcut icon" href="images/icon.ico" />
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/formstyle.css' />
@@ -251,8 +249,9 @@
         var today = new Date()
                 //Calculates age from given Birth Date in the form//
                 function _calcAge(birthDate, givenDate) {
+                    
                 givenDate = new Date(today);
-                var dt1 = document.getElementById('datepicker').value;
+                var dt1 = document.getElementById('datepicker').value;                
                 var birthDate = new Date(dt1);
                 var years = (givenDate.getFullYear() - birthDate.getFullYear());
 
@@ -286,9 +285,11 @@
                 var fname = document.getElementById("fname").value;
                 var lname = document.getElementById("lname").value;
                 var datepicker = document.getElementById("datepicker").value;
+                var age = _calcAge();
+                
                 var address = document.getElementById("address").value;
                 
-                if (fname != '' && lname != '' && datepicker != '' && address != '') { 
+                if (fname != '' && lname != '' && datepicker!='' && parseInt(age) >16 && address != '') { 
                     animating = false;
                 }
                  else {

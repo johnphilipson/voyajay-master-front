@@ -45,6 +45,9 @@ $("#step1").click(function(){
 
     
 $("#step2").click(function(){  
+
+
+    
     if(step2==null){
     if(animating) return false;
     animating = true;    
