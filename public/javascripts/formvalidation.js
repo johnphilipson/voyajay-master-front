@@ -1,106 +1,29 @@
 
-
 function validatephone(phone) 
-{
-    var maintainplus = '';
-    var numval = phone.value 
-    if ( numval.charAt(0)=='+' )
     {
-        var maintainplus = '';
+    if(phone.match(/^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/))
+        {
+            document.getElementById("errphone").innerHTML = "";
+        }
+        else
+        {
+            document.getElementById("errphone").innerHTML = "Please Enter Valid Australian phone number";
+        }
     }
-    curphonevar = numval.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,'');
-    phone.value = maintainplus + curphonevar;
-    var maintainplus = '';
-    phone.focus;
 
-}
 
-// validates text only
-function Validate(txt) {
-    txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
-}
 // validate email
-function email_validate(email)
-{
-var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
 
-    if(regMail.test(email) == false)
+function email_validate()
+
     {
-    document.getElementById("status").innerHTML    = "<span class='warning'>Email address is not valid yet.</span>";
+        var email_x = document.getElementById("email").value;
+        filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (filter.test(email.value)) {
+            document.getElementById("emailval").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("emailval").innerHTML = "Please enter valid email";
+            return false;
+        }
     }
-    else
-    {
-    document.getElementById("status").innerHTML	= "";	
-    }
-}
-
-
-function checkphone(){
-    
-                if (document.getElementById("phone").value.length < 8)
-                 {
-                document.getElementById("errphone").innerHTML = "your phone no is incorrect.";
-                err = 1;
-                 }
-                else
-                {
-                document.getElementById("errphone").innerHTML = '';
-                }              
-                    
-              }
-
-
-
-              function myFunction() {
-                var inpObj = document.getElementById("fname");
-                if (!inpObj.checkValidity()) {
-                   alert("form is empty.");
-                    // document.getElementById("demo").innerHTML = inpObj.validationMessage;
-                } else {
-                    document.getElementById("demo").innerHTML = "Input OK";
-                } 
-            } 
-
-
-
-function required()
-              {
-              var empt = document.form1.text1.value;
-              if (empt === "")
-              {
-              alert("Please input a Value");
-              return false;
-              }
-              else 
-              {
-              alert('Code has accepted : you can try another');
-              return true; 
-              }
-              }       
-
-
-
-function checkForm(form)
-{
-  // validation fails if the input is blank
-  if(form.inputfield.value == "") {
-    alert("Error: Input is empty!");
-    form.inputfield.focus();
-    return false;
-  }
-
-  // regular expression to match only alphanumeric characters and spaces
-  var re = /^[\w ]+$/;
-
-  // validation fails if the input doesn't match our regular expression
-  if(!re.test(form.inputfield.value)) {
-    alert("Error: Input contains invalid characters!");
-    form.inputfield.focus();
-    return false;
-  }
-
-  // validation was successful
-  return true;
-}
-
-

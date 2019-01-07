@@ -1,5 +1,4 @@
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <!DOCTYPE html>
@@ -8,15 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= title %></title>
-<link rel="icon" type="image/ico" href="images/icon.ico" />
+    <title>Voyajay</title>
+    <link rel="shortcut icon" href="images/icon.ico" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/formstyle.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
 
 </head>
-<body>
+<body style="overflow: hidden;">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,19 +25,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#"><img src="images/Logoh.png" style="width: 50%;"></a>
+            <a class="navbar-brand" href="/"><img src="images/Logoh.png" style="width:50%;"></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar" style="padding:12px">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Businesses</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/legal">Legal</a></li>
             </ul>
             </div>
         </div>
     </nav>
-
-            
-   <div class="container-fulid">
+      
+    <div class="container-fulid">
             <div class="row">
                 <div class="frontview">
                     <img src="images/logo1.png">
@@ -46,20 +46,19 @@
             </div>
     </div>
 
-
     <!-- MultiStep Form -->
 <div id="signup" class="vertical-center">
-<div class="row">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form id="msform" method="POST" action="/register">
                 <!-- progressbar -->
                 <ul id="progressbar">
-                    <li class="active">Start</li>
-                    <li>More Details</li>
-                    <li>Start Earning</li>
+                    <li class="active" id="step1">Start</li>
+                    <li id="step2">More Details</li>
+                    <li id="step3">Start Earning</li>
                 </ul>
                 <!-- fieldsets -->
-                <fieldset>
+                <fieldset class="fieldset1">
                     <h2 class="fs-title"></h2>
                     <h3 class="fs-subtitle">Register now and start earning!</h3>
  
@@ -73,6 +72,12 @@
                     <input type="text" class="form-control" name="lname" id="lname" required/>
                     <label class="form-control-placeholder" for="lastname"> Last Name </label>
                     <div id="texterr"></div>
+                    </div>
+
+                    <div class="form-group">
+                            <div class="status" id="emailval"></div>
+                            <input type="text" class="form-control" name="email" id="email" onchange="email_validate(this)" required/>
+                            <label class="form-control-placeholder" for="email"> Your email </label>
                     </div>
 
                     <div class="form-group">
@@ -93,7 +98,7 @@
                 </fieldset>
 
 
-                <fieldset>
+                <fieldset class="fieldset2">
                     
                     <h2 class="fs-title"></h2>
                     <h3 class="fs-subtitle">Some more important questions</h3>
@@ -161,35 +166,37 @@
 
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="fieldset3">
                     <h2 class="fs-title"></h2>
                     <h3 class="fs-subtitle">Create your account</h3>
                     <div id="thirdform">
-			        <label style="width:100%; text-align:left; margin-bottom:20px;">What is your preferred contact method?</label>
-                        <div class="form-group">
-                            <div class="cc-selector" style="text-align: center;">
-                                <input id="emial" type="radio" style="padding: 0;" name="contact" value="email" checked />
-                                <label class="drinkcard-cc emial" for="emial"></label>
-            
-                                <input id="m-phone" type="radio" name="contact" value="m-phone" />
-                                <label class="drinkcard-cc m-phone" for="m-phone" style="margin-left: 30px;"></label>
+			            <label style="width:100%; text-align:left; margin-bottom:20px;">What is your preferred contact method?</label>
+                            <div class="form-group">
+                                <div class="cc-selector" style="text-align: center;">
+                                    <input id="m-phone" type="radio" name="contact" value="m-phone"/>
+                                    <label class="drinkcard-cc m-phone" for="m-phone" style="margin-left: 30px;"></label>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group" id="mail-css">
-                            <div class="status" id="status"></div>
-                                <input type="text" class="form-control" name="email" id="email" onchange="email_validate(this.value);"/>
-                                <label class="form-control-placeholder" for="email"> Email </label>
-                        </div>
 
                         <div class="form-group" id="phone-css" style="display:none;">
                             <div id="errphone"></div>
-                                <input type="text" class="form-control" name="phone" id="phone" maxlength="15" onchange="checkphone(this);" onkeyup="validatephone(this);"/>
+                                <input type="text" class="form-control" name="phone" id="phone" maxlength="15" onkeyup="validatephone(this.value);"/>
                                 <label class="form-control-placeholder" for="phn"> Phone No. </label>
-                            </div>
-                    </div>
+                        </div>
+                        </div>
 
-			  <a href="#privacy" style="float:left; color:black;">Privacy Policy</a><br>
+                        <div class="form-group">
+                                <label for="sel1">How did you hear about us?</label>
+                                    <select class="form-control" id="sel1" name="aboutus">
+                                        <option value="Word of Mouth">Word of Mouth</option>
+                                        <option value="Social Media">Social Media</option>
+                                        <option value="Job site">Job site (ie SEEK, Indeed, Gumtree)</option>
+                                        <option value="mail">In the mail</option>
+                                        <option value="Other">Other</option>
+                                    </select>  
+                            </div>
+
+			  <a href="/privacy" style="float:left; color:black;">Privacy Policy</a><br>
 
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <button class="btn" type="submit">Send</button>
@@ -203,83 +210,6 @@
     </div>
 </div> 
 
-
-
-    <div id="privacy" class="privacy-policy">
-        <div class="row">
-          <div class="privacy-txt">
-            <div class="">
-                <h3>Privacy Policy</h3>
-                <p>Voyajay built the Voyajay app as a Free app. This SERVICE is provided by Voyajay at no cost and is intended for use as is.</p> 
-                <p>This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.</p>
-                <p>If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
-                <p>The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Voyajay unless otherwise defined in this Privacy Policy.</p>
-            </div>
-        
-            <div class="">
-                <h3>Information Collection and Use</h3>
-                <p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to Name, Phone Number, Email, Address, Age, Occupation, Relationship Status, Education. The information that we request will be retained by us and used as described in this privacy policy.</p> 
-                <p>The app does use third party services that may collect information used to identify you.</p>
-                <p>Link to privacy policy of third party service providers used by the app</p>
-            </div>
-
-            <div class="">
-                <h3>Google Play Services</h3>
-                <h5>Log Data</h5>
-                <p>We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol ( IP ) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p> 
-            </div>
-
-            <div class="">
-                <h3>Cookies</h3>
-                <p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.</p> 
-                <p>This Service does not use these  cookies  explicitly. However, the app may use third party code and libraries that use  cookies  to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.</p>
-            </div>
-                     
-            <div class="">
-                <h3>Service Providers</h3>
-                <dl>
-                <dt>We may employ third-party companies and individuals due to the following reasons:</dt>
-                    <dd>To facilitate our Service;</dd>
-                    <dd>To provide the Service on our behalf;</dd>
-                    <dd>To perform Service-related services; or</dd>
-                    <dd>To assist us in analyzing how our Service is used.</dd>
-                </dl>
-                <p>We want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.</p>           
-            </div>
-
-            <div class="">
-                <h3>Security</h3>
-                <p>We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
-            </div>
-
-            <div class="">
-                <h3>Links to Other Sites</h3>
-                <p>This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
-            </div>    
-                
-            <div class="">
-                <h3>Children s Privacy</h3>
-                <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do necessary actions.</p>
-            </div>
-
-            <div class="">
-                <h3>Changes to This Privacy Policy</h3>
-                <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.</p>
-            </div>
-
-            <div class="">
-                <h3>Contact Us</h3>
-                <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
-                <p>This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</p>
-            </div> 
-                                       
-           </div>
-        </div>
-    </div> 
-
-
-
-   
     <!-- /.MultiStep Form <input type="submit" name="submit" class="submit action-button" id="submitbtn"  value="Start Earning!"/> -->
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -292,14 +222,14 @@
 
     <script>
 
-$(document).ready(function(){
-		var date_input=$('input[name="dob"]'); //our date input has the name "date"
-		date_input.datepicker({
-			format: 'mm/dd/yyyy',
-			todayHighlight: true,
-			autoclose: true,
-		})
-	})
+    $(document).ready(function(){
+            var date_input=$('input[name="dob"]'); //our date input has the name "date"
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                todayHighlight: true,
+                autoclose: true,
+            })
+    })
 
 
         $(function() {
@@ -319,8 +249,9 @@ $(document).ready(function(){
         var today = new Date()
                 //Calculates age from given Birth Date in the form//
                 function _calcAge(birthDate, givenDate) {
+                    
                 givenDate = new Date(today);
-                var dt1 = document.getElementById('datepicker').value;
+                var dt1 = document.getElementById('datepicker').value;                
                 var birthDate = new Date(dt1);
                 var years = (givenDate.getFullYear() - birthDate.getFullYear());
 
@@ -330,7 +261,7 @@ $(document).ready(function(){
                 }
 
                 return years;
-            }
+        }
 
             //Compares calculated age with minimum age and acts according to rules//
                 function _setAge() {
@@ -346,17 +277,19 @@ $(document).ready(function(){
                         $(".confirmation").show();
 
 
-                    });
+                });
       
-                  // Below Function Executes On Form Submit
-                function ValidationEvent() {
+            // Below Function Executes On Form Submit
+            function ValidationEvent() {
                 // Storing Field Values In Variables
                 var fname = document.getElementById("fname").value;
                 var lname = document.getElementById("lname").value;
                 var datepicker = document.getElementById("datepicker").value;
+                var age = _calcAge();
+                
                 var address = document.getElementById("address").value;
                 
-                if (fname != '' && lname != '' && datepicker != '' && address != '') { 
+                if (fname != '' && lname != '' && datepicker!='' && parseInt(age) >16 && address != '') { 
                     animating = false;
                 }
                  else {
@@ -364,9 +297,9 @@ $(document).ready(function(){
                     animating = true;
                 return false;
                     }
-                }
+            }
                 
-                function validationsecondform(){
+            function validationsecondform(){
     
                 var radios = document.getElementsByName("home");
                 var formValid = false;
@@ -385,7 +318,7 @@ $(document).ready(function(){
              else{
                 animating = false;
              }
-                }
+            }
 
 
     </script>
