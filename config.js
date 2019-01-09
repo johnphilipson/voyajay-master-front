@@ -1,31 +1,12 @@
-/*
-'user strict';
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'sameer',
-  database : 'express-form_db'
-});
-connection.connect(function(err){
-if(!err) {
-    console.log("Database is connected");
-} else {
-    console.log("Error while connecting with database");
-}
-});
-module.exports = connection;*/
-
-
 const util = require('util')
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host     : 'localhost',
+  host     : '127.0.0.1',
   user     : 'root',
   password : 'ty8ISJhgzE6T',
-  database : 'voyajay_db',
+  database : 'voyajay_db'
 })
 
 pool.getConnection((err, connection) => {
