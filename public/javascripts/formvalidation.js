@@ -9,6 +9,24 @@ function ValidationEvent1() {
     var emailval =  /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+.([a-zA-Z])+([a-zA-Z])+/ ;
 
 
+    var today = new Date()
+    //Calculates age from given Birth Date in the form//
+    function _calcAge(birthDate, givenDate) {      
+    givenDate = new Date(today);
+    var dt1 = document.getElementById('date').value;                
+    var birthDate = new Date(dt1);
+    var years = (givenDate.getFullYear() - birthDate.getFullYear());
+
+    if (givenDate.getMonth() < birthDate.getMonth() ||
+    givenDate.getMonth() == birthDate.getMonth() && givenDate.getDate() < birthDate.getDate()) {
+    years--;
+    }
+
+    return years;
+    }
+
+    var age = _calcAge();
+
     if (fname == '' || lname == '' || email == '' || dob == '' || address == ''  ) { 
             document.getElementById("filedsetfirsterr").innerHTML="Please complete all required fields";
             animating = true;
@@ -28,6 +46,19 @@ function ValidationEvent1() {
             }           
            
     }   
+
+    if (dob !== '' ) { 
+        if (age > 16) {
+            document.getElementById("filedsetfirsterr").innerHTML = "";
+            animating = false;
+        }
+        else {
+            document.getElementById("filedsetfirsterr").innerHTML = "People under sixteen are ineligible for sign-up";
+            animating  = true;
+            return false;
+        }           
+       
+    } 
     
     else {
         document.getElementById("filedsetfirsterr").innerHTML="";
