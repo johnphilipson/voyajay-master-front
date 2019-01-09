@@ -1,11 +1,235 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<%- include navigation.ejs %>
+
+<section class="section section--red">
+  <div class="container">
+    <div class="content align middle center">
+        <img src="images/logo1.png">
+        <h3 style="color:#fff;">The Customer Journey Experts</h3>
+      <a> <button type="button" class="btn start-b start-button icon--arrow icon--arrow-down">Start</button></a>
+    </div>
+  </div>
+</section><!-- .section -->
+
+  <section class="section section--green">
+    <div class="container">
+        <div class="voyajay-form">
+          <form id="msform" method="POST" action="/" >
+              <!-- progressbar -->
+              <ul id="progressbar">
+                  <li class="active" id="step1">start</li>
+                  <li id="step2">More Details</li>
+                  <li id="step3">Start Earning</li>
+              </ul>
+              <!-- fieldsets -->
+              <fieldset id="fieldset1">
+                  <h2 class="fs-title">Register now and start earning!</h2>
+                  <h3 class="fs-subtitle"></h3>
+      
+                    <div class="field text">
+                      <input type="text" id="fname" name="fname" placeholder="First Name" required />
+                      <label for="fname">First Name</label>
+                    </div>
+
+                    <div class="field text">
+                      <input type="text" id="lname" name="lname" placeholder="Last Name" required />
+                      <label for="lname">Last Name</label>
+                    </div>
+
+                    <div class="field text">
+                        <input type="email" id="email" name="email" placeholder="Email" required />
+                        <label for="email">Email</label>
+                    </div>
+
+                    <div class="field text">
+                        <input type="text" id="date" name="date" placeholder="MM/DD/YYY" type="text" required />
+                        <label for="dob">Date of Birth</label>
+                    </div>
+
+                    <div class="field text">
+                        <input type="text" id="address" name="address" placeholder="Address" required />
+                        <label for="address">Address</label>
+                    </div>
+                    <div id="filedsetfirsterr"></div>
+
+                  
+                  <input type="button" name="next" class="next action-button" id="btn-first" value="Next" onclick="ValidationEvent1(this)"/>
+              </fieldset>
+
+
+              <fieldset id="fieldset2">
+                  <h2 class="fs-title">Some more important questions</h2>
+                  <h3 class="fs-subtitle"></h3>
+
+
+                  <div class="field text">
+                      <p class="Question">Do you own or rent your home?</p>
+                      <div class="inline-radio">
+                          <div class="radio-btn"><input type="radio" name="home" value="Rent"><span>Rent</span></div>
+                          <div class="radio-btn"><input type="radio" name="home" value="Owner"><span>Owner</span></div>
+                      </div>
+                  </div>
+
+                  <div class="field text">
+                    <p class="Question">What is your relationship status?</p>
+                        <select class="form-control" id="relstatus" name="relationship">
+                            <option value="">Choose your relationship status</option>
+                            <option value="Single">Single</option>
+                            <option value="In a Relationship">In a Relationship</option>
+                            <option value="Married">Married</option>
+                            <option value="Married with Children">Married with Children</option>
+                            <option value="It's Complicated">It's Complicated</option>
+                        </select>   
+                </div>
+
+                <div class="field text">
+                    <p class="Question">What is your occupation?</p>
+                        <select class="form-control" id="occupation" name="occupation">
+                            <option value="">Choose your occupation</option>
+                            <option value="Studying">Studying</option>
+                            <option value="Self-employed,">Self-employed</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Unemployed">Unemployed</option>
+                        </select>  
+                </div>
+
+                <div class="field text">
+                  <p class="Question">Which of the following options best describes your education?</p>
+                      <ul class="ulflex">
+                          <li>   
+                              <label class="radio-img">
+                                  <input type="radio" name="education" value="highschool" />
+                                  <img src="/images/highschool.png" width="60%">
+                                </label>
+                          </li>
+                          <li>
+                              <label class="radio-img">
+                                  <input type="radio" name="education" value="tertiary" />
+                                  <img src="/images/tertiary.png" width="60%">
+                                </label>
+                          </li>
+                          <li>
+                              <label class="radio-img">
+                                  <input type="radio" name="education" value="tafe" />
+                                  <img src="/images/tafe.png" width="60%">
+                                </label>
+                          </li>
+                          <li> 
+                              <label class="radio-img">
+                                  <input type="radio" name="education" value="none" />
+                                  <img src="/images/none.png" width="60%">
+                                </label>
+                          </li>
+                          </ul> 
+                </div>
+
+                <div id="filedsetSecErr"></div>
+
+                  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                  <input type="button" name="next" class="next action-button" value="Next" onclick="ValidationEvent2(this)"/>
+              </fieldset>
+
+
+              <fieldset id="fieldset3">
+                  <h2 class="fs-title">Create your account</h2>
+                  <h3 class="fs-subtitle"></h3>
+                  <div class="field text">
+                      <input type="text" id="phone" name="phone" placeholder="Mobile No" required />
+                      <label for="P_num">mobile No.</label>
+                  </div>
+
+                  <div class="field text">
+                    <p class="Question">How did you hear about us?</p>
+                    <select class="form-control" id="aboutus" name="aboutus">
+                        <option value="">Choose your option</option>
+                        <option value="Word of Mouth">Word of Mouth</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Job site">Job site (ie SEEK, Indeed, Gumtree)</option>
+                        <option value="mail">In the mail</option>
+                        <option value="Other">Other</option>
+                    </select>  
+                </div>
+
+                <div id="filedsetThrErr"></div>
+                  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                 <button class="btn" id="submitbtn" type="submit" onclick="ValidationEvent3(this)">Submit</button></a>
+                 <input type="hidden" id="custId" name="custId" value="<%=sucess%>">
+              </fieldset>
+
+             
+          </form>
+        </div>
+    </div>
+  </section><!-- .section -->
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="/javascripts/formscript.js"></script>
+  <script type="text/javascript" src="/javascripts/formvalidation.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Bootstrap Date-Picker Plugin -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+
+
+
+<script>
+ console.log(document.getElementById("custId").value);
+
+        (function ($) {
+        'use strict';
+        
+        $('.start-b , .icon').on('click', function () {
+            var $this = $(this);
+            if ($this.hasClass('icon--arrow-up')) {
+            var $slide = $(window).scrollTop() - $(window).height();
+            }
+            if ($this.hasClass('icon--arrow-down')) {
+            var $slide = $(window).scrollTop() + $(window).height();
+            }
+            
+            $('html, body').animate({
+            scrollTop: $slide
+            }, 1200);
+        });
+        
+        })(jQuery)
+
+
+        $(function(){
+                $('.start-b').on("click", function () {
+                $('.section--red').delay(2000).fadeOut();
+                });
+            
+            
+            $('.icon').on("click", function () {
+                $('.section--red').fadeIn();
+                });
+                
+            
+        }); 
+
+
+            $(document).ready(function(){
+            var date_input=$('input[name="date"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            var options={
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            };
+            date_input.datepicker(options);
+            })
+
+
+
+
+</script>
+
+</body>
 </html>

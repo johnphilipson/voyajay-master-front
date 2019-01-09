@@ -25,7 +25,7 @@ const pool = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
   password : 'sameer',
-  database : 'express-form_db',
+  database : 'voyajay_db',
 })
 
 pool.getConnection((err, connection) => {

@@ -1,0 +1,6 @@
+.navbar {
+    position: fixed;
+    min-height: 70px;
+     margin:0px !important;
+    border: 1px solid transparent;
+}
