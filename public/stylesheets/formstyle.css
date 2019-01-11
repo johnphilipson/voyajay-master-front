@@ -25,9 +25,8 @@
     box-sizing: border-box;
     width: 80%;
     margin: 0 10%;
-
     /*stacking fieldsets above each other*/
-    position: relative;
+    position: absolute;
 }
 
 /*Hide all except first fieldset*/

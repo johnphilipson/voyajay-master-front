@@ -8,21 +8,19 @@ function ValidationEvent1() {
     var msg =  document.getElementById("msg");
     var emailval =  /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+.([a-zA-Z])+([a-zA-Z])+/ ;
 
-
     var today = new Date()
     //Calculates age from given Birth Date in the form//
     function _calcAge(birthDate, givenDate) {      
-    givenDate = new Date(today);
-    var dt1 = document.getElementById('date').value;                
-    var birthDate = new Date(dt1);
-    var years = (givenDate.getFullYear() - birthDate.getFullYear());
+        givenDate = new Date(today);
+        var dt1 = document.getElementById('date').value;                
+        var birthDate = new Date(dt1);
+        var years = (givenDate.getFullYear() - birthDate.getFullYear());
 
-    if (givenDate.getMonth() < birthDate.getMonth() ||
-    givenDate.getMonth() == birthDate.getMonth() && givenDate.getDate() < birthDate.getDate()) {
-    years--;
-    }
-
-    return years;
+        if (givenDate.getMonth() < birthDate.getMonth() ||
+        givenDate.getMonth() == birthDate.getMonth() && givenDate.getDate() < birthDate.getDate()) {
+        years--;
+        }
+        return years;
     }
 
     var age = _calcAge();
@@ -50,6 +48,8 @@ function ValidationEvent1() {
     if (dob !== '' ) { 
         if (age > 16) {
             document.getElementById("filedsetfirsterr").innerHTML = "";
+            step1 = true;
+            currentStep = 2;
             animating = false;
         }
         else {
@@ -62,8 +62,7 @@ function ValidationEvent1() {
     
     else {
         document.getElementById("filedsetfirsterr").innerHTML="";
-    animating = false;
-
+        animating = false;
     }
 
         
@@ -96,10 +95,10 @@ function ValidationEvent2(){
 
     else {
         document.getElementById("filedsetSecErr").innerHTML="";
-    animating = false;
-
+        step2 = true;
+        currentStep = 3;
+        animating = false;
     }
-
 }
 
 
@@ -133,8 +132,8 @@ function ValidationEvent3(){
 
     else {
         document.getElementById("filedsetThrErr").innerHTML="";
-    animating = false;
-
+        step3 = true;
+        animating = false;
     }
 
 }
