@@ -1,3 +1,5 @@
+
+
 function ValidationEvent1() {
     // Storing Field Values In Variables
     var fname = document.getElementById("fname").value;
@@ -55,6 +57,8 @@ function ValidationEvent1() {
         else {
             document.getElementById("filedsetfirsterr").innerHTML = "People under sixteen are ineligible for sign-up";
             animating  = true;
+            step1 = false;
+            step3 = false;
             return false;
         }           
        
